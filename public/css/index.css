@@ -39,9 +39,22 @@ article {
 
 article > label {
   border-bottom: 1px solid #999;
-  height: 20%;
+  height: 100%;
 }
 
 article > label:last-child {
   border-bottom: none;
+}
+
+.championBen {
+  display: flex;
+  align-items: center;
+}
+.championBen > div {
+  width: 20%;
+  height: 100%;
+  border: 1px solid #333;
+}
+.championBen img {
+  width: 100%;
 }
