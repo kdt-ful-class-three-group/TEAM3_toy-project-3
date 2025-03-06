@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   background-image: url("../img/background.png");
@@ -38,6 +39,8 @@ section {
 }
 .championMainWrap img {
   width: 100%;
+  height: 100%;
+  border: 1px solid #e8e8e8;
 }
 article {
   display: flex;
