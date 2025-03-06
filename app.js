@@ -1,1 +1,1 @@
-console.log("프로젝트시작")
+// console.log("프로젝트시작")
