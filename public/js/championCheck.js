@@ -8,7 +8,7 @@ let blueImgIndex = 0;
 let redImgIndex = 0;
 
 function imgChange(color) {
-  if (blueImgIndex < 5 && color === "red") {
+  if (blueImgIndex < 5 && color === "blue") {
     console.log(color);
     blueImgIndex++;
     // main.forEach((mainBtn) => {
@@ -30,7 +30,7 @@ function imgChange(color) {
     blueImgIndex = 1;
   }
 
-  if (blueImgIndex < 5 && color === "blue") {
+  if (blueImgIndex < 5 && color === "red") {
     console.log("11" + color);
     redImgIndex++;
   } else {
