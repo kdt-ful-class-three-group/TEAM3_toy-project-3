@@ -4,7 +4,7 @@ function championCreate(data) {
   const champions = Object.values(data.data);
   champions.forEach((element) => {
     console.log(element.image);
-    championList.innerHTML += `<img src="./public/img/champion/${element.image.full}" alt="">`;
+    championList.innerHTML += `<div><img src="./public/img/champion/${element.image.full}" alt=""></div>`;
   });
 }
 
