@@ -16,13 +16,30 @@ main {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  padding: 20px;
   background-color: #00000097;
 }
 section {
   width: 58%;
+  height: 90%;
   background-color: #999;
 }
+.championMainWrap {
+  display: flex;
+}
 article {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
   width: 20%;
-  background-color: blue;
+  /* background-color: blue; */
+}
+
+article > label {
+  border-bottom: 1px solid #999;
+  height: 20%;
+}
+
+article > label:last-child {
+  border-bottom: none;
 }
