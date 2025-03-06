@@ -27,7 +27,17 @@ section {
   background-color: #999;
 }
 .championMainWrap {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: space-between;
+}
+
+.championMainWrap div {
+  width: 100%;
+  cursor: pointer;
+}
+.championMainWrap img {
+  width: 100%;
 }
 article {
   display: flex;
@@ -39,6 +49,7 @@ article {
 
 article > label {
   border-bottom: 1px solid #999;
+  cursor: pointer;
   height: 100%;
 }
 

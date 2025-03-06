@@ -1,1 +1,6 @@
-console.log("연결")
+let championCheck = {};
+
+let championblue = document.getElementById("championblue");
+let championred = document.getElementById("championred");
+
+
