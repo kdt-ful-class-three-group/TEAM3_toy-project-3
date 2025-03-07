@@ -1,17 +1,21 @@
 let txt = document.querySelector("h2");
-let resetBtn = document.getElementById("reset-btn");
-let seconds = 30;
+let resetBtn1 = document.getElementById("reset-btn1");
+let resetBtn2 = document.getElementById("reset-btn2");
+let seconds = 5;
 let timer;
 let clickCount = 0;
+
 function startTimer() {
-  if (clickCount >= 10) {
+  if (clickCount >= 5) {
     alert("끝났습니다!");
-    return;
+    return; // 더 이상 실행되지 않도록 중단
   }
+
   clearInterval(timer);
-  seconds = 30;
+  seconds = 5;
   txt.textContent = seconds;
   clickCount++;
+
   timer = setInterval(() => {
     seconds--;
     txt.textContent = seconds;
@@ -20,5 +24,7 @@ function startTimer() {
     }
   }, 1000);
 }
-resetBtn.addEventListener("click", startTimer);
+
+resetBtn1.addEventListener("click", startTimer);
+resetBtn2.addEventListener("click", startTimer);
 startTimer();
