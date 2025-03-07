@@ -25,9 +25,10 @@ function championCreate(data) {
   champions.sort((a, b) => a.name.localeCompare(b.name, "ko-KR"));
 
   // 챔피언 목록을 출력.
-  function displayChampions(championArray) {
-    championList.innerHTML = ""; // 기존 목록 초기화
+  function championBox(championArray) {
+    championList.innerHTML = "";
     championArray.forEach((element) => {
+      // console.log(element.image)
       // p태그 생성하여 챔피언 이름 작성. css도 수정완료 확인바라고 수정할 부분있으면 최현준에게 말해주세요 //
       championList.innerHTML += `
         <div>
@@ -40,14 +41,14 @@ function championCreate(data) {
 
   // 검색 기능 추가함.
   searchBox.addEventListener("input", function () {
-    const searchText = searchBox.value.toLowerCase(); 
+    const searchText = searchBox.value
     const filteredChampions = champions.filter((data) =>
-      data.name.toLowerCase().includes(searchText) 
+      data.name.includes(searchText) 
     );
-    displayChampions(filteredChampions); 
+    championBox(filteredChampions); 
   });
 
-  displayChampions(champions);
+  championBox(champions);
 }
 
 export default championCreate;

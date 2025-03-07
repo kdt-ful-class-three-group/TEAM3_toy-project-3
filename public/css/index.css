@@ -49,9 +49,6 @@ section {
   width: 100%;
   max-width: 80px;
   aspect-ratio: 1/1;
-  /* width: 80px;
-  height: 80px; */
-  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 5px;
   /* border: 1px solid #e8e8e8; */
