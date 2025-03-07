@@ -39,19 +39,55 @@ function imgChange(color) {
 
   // console.log(blueImgIndex);
 }
-main.forEach((mainBtn) => {
-  mainBtn.addEventListener("click", () => {
-    let mainImg = mainBtn.querySelector("img");
-    console.log(mainImg);
-    // if (mainImg) {
-    let blueImgs = championblue.querySelectorAll("img");
-    // if (blueImgs.length > 0) {
-    let blueImg = blueImgs[blueImgIndex];
-    // if (blueImg) {
-    blueImg.src = mainImg.src;
-    // blueImgIndex = blueImgIndex % blueImgs.length;
-    // }
-    // }
-    // }
+function banPickLogic(elements) {
+  elements.forEach((elementdata) => {
+    elementdata.addEventListener("click", () => {
+      let mainImg = elementdata.querySelector("img");
+      if (mainImg) {
+        let blueImgs = championblue.querySelectorAll("img");
+        if (blueImgs.length > 0) {
+          let blueImg = blueImgs[blueImgIndex];
+          if (blueImg) {
+            blueImg.src = mainImg.src;
+            blueImgIndex = (blueImgIndex + 1) % blueImgs.length;
+          }
+        }
+      }
+    });
   });
-});
+}
+// console.log(main);
+// function banPickLogic(element) {
+//   console.log(element);
+//   element.forEach((elementdata) => {
+//     elementdata.addEventListener("click", () => {
+//       // if (mainImg) {
+//       let blueImgs = championblue.querySelectorAll("img");
+//       // if (blueImgs.length > 0) {
+//       let blueImg = blueImgs[blueImgIndex];
+//       // if (blueImg) {
+//       blueImg.src = mainImg.src;
+//       // blueImgIndex = blueImgIndex % blueImgs.length;
+//       // }
+//       // }
+//       // }
+//     });
+//   });
+// }
+export default banPickLogic;
+// main.forEach((mainBtn) => {
+//   mainBtn.addEventListener("click", () => {
+//     let mainImg = mainBtn.querySelector("img");
+//     console.log(mainImg);
+//     // if (mainImg) {
+//     let blueImgs = championblue.querySelectorAll("img");
+//     // if (blueImgs.length > 0) {
+//     let blueImg = blueImgs[blueImgIndex];
+//     // if (blueImg) {
+//     blueImg.src = mainImg.src;
+//     // blueImgIndex = blueImgIndex % blueImgs.length;
+//     // }
+//     // }
+//     // }
+//   });
+// });
