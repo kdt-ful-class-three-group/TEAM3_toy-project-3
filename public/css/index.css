@@ -48,8 +48,9 @@ section {
   align-items: center;
 }
 .championMainWrap img {
+  /* 챔피언 타일 크기 조정함. */
   width: 100%;
-  height: 100%;
+  max-width: 80px;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 5px;
