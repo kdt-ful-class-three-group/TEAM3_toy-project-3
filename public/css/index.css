@@ -40,11 +40,25 @@ section {
 .championMainWrap div {
   width: 100%;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .championMainWrap img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 5px;
   /* border: 1px solid #e8e8e8; */
+}
+
+/* 챔피언이름 스타일 추가  */
+.championMainWrap p {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  margin-top: 5px;
 }
 article {
   display: flex;
