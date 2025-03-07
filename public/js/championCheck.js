@@ -43,16 +43,10 @@ function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
       let mainImg = elementdata.querySelector("img");
-      if (mainImg) {
-        let blueImgs = championblue.querySelectorAll("img");
-        if (blueImgs.length > 0) {
-          let blueImg = blueImgs[blueImgIndex];
-          if (blueImg) {
-            blueImg.src = mainImg.src;
-            blueImgIndex = (blueImgIndex + 1) % blueImgs.length;
-          }
-        }
-      }
+      let blueImgs = championblue.querySelectorAll("img");
+      let blueImg = blueImgs[blueImgIndex];
+      blueImg.src = mainImg.src;
+      blueImgIndex = (blueImgIndex + 1) % blueImgs.length;
     });
   });
 }
@@ -74,6 +68,8 @@ function banPickLogic(elements) {
 //     });
 //   });
 // }
+window.imgChange = imgChange;
+
 export default banPickLogic;
 // main.forEach((mainBtn) => {
 //   mainBtn.addEventListener("click", () => {
