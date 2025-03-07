@@ -64,15 +64,37 @@ article > label:last-child {
   border-bottom: none;
 }
 
-.championBen {
+.championBan {
   display: flex;
   align-items: center;
 }
-.championBen > div {
+.championBan > div {
   width: 20%;
   height: 100%;
   border: 1px solid #333;
 }
-.championBen img {
+.championBan img {
   width: 100%;
+}
+
+.banPickWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+.banPickWrap button {
+  cursor: pointer;
+  padding: 10px 20px;
+  width: 50%;
+  color: #fff;
+  border: none;
+}
+.banPickWrap button:first-child {
+  background-color: rgb(49, 49, 255);
+}
+.banPickWrap button:last-child {
+  display: none;
+  background-color: rgb(255, 44, 44);
 }

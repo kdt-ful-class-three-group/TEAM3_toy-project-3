@@ -1,41 +1,57 @@
-let championCheck = {};
+// let championCheck = {};
 
-let championblue = document.getElementById("championblue");
-let championred = document.getElementById("championred");
+let championblue = document.getElementById("championblue"); //* 블루팀 벤 픽 이미지
+let championred = document.getElementById("championred"); //* 레드팀 벤 픽 이미지
+let blueBtn = document.getElementById("blueBanBtn"); //* 블루팀 버튼
+let redBtn = document.getElementById("redBanBtn"); //* 레드팀 버튼
 
-let main = document.querySelectorAll(".championMainWrap > div");
-let blueImgIndex = 0;
-let redImgIndex = 0;
+let main = document.querySelectorAll(".championMainWrap > div"); //* 벤 할 챔피언
+let blueImgIndex = 0; //* 블루팀 벤픽 카운트
+let redImgIndex = 0; //* 레드팀 벤픽 카운트
 
 function imgChange(color) {
+  //* 블루팀 벤픽 로직
   if (blueImgIndex < 5 && color === "blue") {
-    console.log(color);
     blueImgIndex++;
-    // main.forEach((mainBtn) => {
-    //   mainBtn.addEventListener("click", () => {
-    //     let mainImg = mainBtn.querySelector("img");
-    //     if (mainImg) {
-    //       let blueImgs = championblue.querySelectorAll("img");
-    //       if (blueImgs.length > 0) {
-    //         let blueImg = blueImgs[blueImgIndex];
-    //         if (blueImg) {
-    //           blueImg.src = mainImg.src;
-    //           blueImgIndex = blueImgIndex % blueImgs.length;
-    //         }
-    //       }
-    //     }
-    //   });
-    // });
-  } else {
-    blueImgIndex = 1;
+    blueBtn.style.display = "none";
+    redBtn.style.display = "block";
+    console.log("blue" + blueImgIndex);
+    // } else {
+    //   blueImgIndex = 0;
   }
-
-  if (blueImgIndex < 5 && color === "red") {
-    console.log("11" + color);
+  //* 레드팀 벤픽 로직
+  if (redImgIndex < 5 && color === "red") {
     redImgIndex++;
-  } else {
-    redImgIndex = 1;
+    blueBtn.style.display = "block";
+    redBtn.style.display = "none";
+    console.log("red" + redImgIndex);
+    // } else {
+    //   redImgIndex = 0;
+  }
+  //* 블루팀 벤픽 카운트 초기화
+  if (blueImgIndex === 5 && color === "blue") {
+    blueImgIndex = 0;
+  }
+  //* 레드팀 벤픽 카운트 초기화
+  if (redImgIndex === 5 && color === "blue") {
+    redImgIndex = 0;
   }
 
-  console.log(blueImgIndex);
+  // console.log(blueImgIndex);
 }
+main.forEach((mainBtn) => {
+  mainBtn.addEventListener("click", () => {
+    let mainImg = mainBtn.querySelector("img");
+    console.log(mainImg);
+    // if (mainImg) {
+    let blueImgs = championblue.querySelectorAll("img");
+    // if (blueImgs.length > 0) {
+    let blueImg = blueImgs[blueImgIndex];
+    // if (blueImg) {
+    blueImg.src = mainImg.src;
+    // blueImgIndex = blueImgIndex % blueImgs.length;
+    // }
+    // }
+    // }
+  });
+});
