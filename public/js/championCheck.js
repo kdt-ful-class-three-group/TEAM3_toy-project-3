@@ -1,4 +1,5 @@
 // DOM 요소 선택
+import startTimer from "./time.js";
 let championblue = document.getElementById("championblue"); // 블루팀 벤 픽 이미지
 let championred = document.getElementById("championRed"); // 레드팀 벤 픽 이미지
 let blueTeam = document.getElementById("blueTeam"); // 블루팀 챔피언 선택
