@@ -1,14 +1,13 @@
 let txt = document.querySelector("h2");
 let resetBtn1 = document.getElementById("reset-btn1");
 let resetBtn2 = document.getElementById("reset-btn2");
-let seconds = 5;
 let timer;
 let clickCount = 0;
 
 function startTimer() {
-  if (clickCount >= 5) {
+  if (clickCount >= 10) {
     alert("끝났습니다!");
-    return; // 더 이상 실행되지 않도록 중단
+    clickCount = 0; //초기화
   }
 
   clearInterval(timer);
