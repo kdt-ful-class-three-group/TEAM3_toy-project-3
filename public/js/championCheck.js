@@ -73,6 +73,8 @@ function imgChange(color) {
 function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
+      // elementdata.style.pointerEvents = "none";
+      // elementdata.style.opacity = "0.3";
       let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
       if (allChecked) {
         if (blueBtn.style.display === "block") {
@@ -92,8 +94,6 @@ function banPickLogic(elements) {
     });
   });
 }
-// elementdata.style.pointerEvents = "none"; 클릭 못하게 막는 이벤트
-// elementdata.style.opacity = "0.3";
 
 //* 전역 범위에 imgChange 함수를 노출
 window.imgChange = imgChange;
