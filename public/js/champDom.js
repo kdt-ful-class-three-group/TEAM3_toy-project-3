@@ -2,8 +2,8 @@ function championCreate(data) {
   let championList = document.getElementById("championList");
   console.log(data);
   const champions = Object.values(data.data);
-    // sort메서드로 정렬해봄.
-    champions.sort((a, b) => a.name.localeCompare(b.name, "ko-KR"));
+  // sort메서드로 정렬해봄.
+  champions.sort((a, b) => a.name.localeCompare(b.name, "ko-KR"));
 
   champions.forEach((element) => {
     console.log(element.image);
@@ -13,4 +13,3 @@ function championCreate(data) {
 }
 
 export default championCreate;
-
