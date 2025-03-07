@@ -1,6 +1,6 @@
-let txt = document.querySelector("h2");
-let resetBtn1 = document.getElementById("reset-btn1");
-let resetBtn2 = document.getElementById("reset-btn2");
+// let txt = document.querySelector("h2");
+// let resetBtn1 = document.getElementById("reset-btn1");
+// let resetBtn2 = document.getElementById("reset-btn2");
 let timer;
 let clickCount = 0;
 
@@ -11,7 +11,7 @@ function startTimer() {
   }
 
   clearInterval(timer);
-  seconds = 5;
+  seconds = 30;
   txt.textContent = seconds;
   clickCount++;
 
@@ -24,6 +24,6 @@ function startTimer() {
   }, 1000);
 }
 
-resetBtn1.addEventListener("click", startTimer);
-resetBtn2.addEventListener("click", startTimer);
-startTimer();
+// resetBtn1.addEventListener("click", startTimer);
+// resetBtn2.addEventListener("click", startTimer);
+// startTimer();

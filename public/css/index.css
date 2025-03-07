@@ -116,3 +116,7 @@ article > label:last-child {
   display: none;
   background-color: rgb(255, 44, 44);
 }
+
+.timerWrap p {
+  color: #fff;
+}
