@@ -22,15 +22,17 @@ function championCreate(data) {
         </div>
       `;
     });
+    const createdElements = championList.querySelectorAll("div");
+    banPickLogic(createdElements);
   }
 
   // 검색 기능 추가함.
   searchBox.addEventListener("input", function () {
-    const searchText = searchBox.value
+    const searchText = searchBox.value;
     const filteredChampions = champions.filter((data) =>
-      data.name.includes(searchText) 
+      data.name.includes(searchText)
     );
-    championBox(filteredChampions); 
+    championBox(filteredChampions);
   });
 
   championBox(champions);
