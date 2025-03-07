@@ -2,9 +2,7 @@ import banPickLogic from "./championCheck.js";
 
 function championCreate(data) {
   let championList = document.getElementById("championList");
-  let searchBox = document.getElementById("searchBox"); // 검색 입력 필드
-  console.log(data);
-
+  // console.log(data);
   const champions = Object.values(data.data);
   // sort메서드로 정렬해봄.
   champions.sort((a, b) => a.name.localeCompare(b.name, "ko-KR"));
