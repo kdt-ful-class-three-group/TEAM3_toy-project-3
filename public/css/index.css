@@ -23,7 +23,7 @@ main {
 }
 section {
   width: 50%;
-  height: 90%;
+  height: 80%;
   padding: 20px;
   padding-top: 0;
   border-radius: 10px;
@@ -84,7 +84,7 @@ article > label {
 } */
 
 article > label {
-  background-image: url("../img/cham1.jpg");
+  /* background-image: url("../img/cham1.jpg"); */
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -134,7 +134,32 @@ article > label:last-child {
   display: none;
   background-color: rgb(255, 44, 44);
 }
-
+.timerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
 .timerWrap p {
+  color: #fff;
+}
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.searchWrap input {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #00000030;
+  border: 1px solid gold;
+  padding: 10px 15px;
+  color: #fff;
+  outline: none;
+}
+.searchWrap input::placeholder {
   color: #fff;
 }
