@@ -10,8 +10,8 @@ let clickLabel = Array.from(document.querySelectorAll(".champion-check input"));
 let blueImgIndex = 0; // 블루팀 벤픽 카운트
 let redImgIndex = 0; // 레드팀 벤픽 카운트
 let article = document.querySelectorAll("article label"); // 모든 label 요소 선택
-let teamColor = ""; // 팀 색상
 let teamClick = "";
+const savedPicks = new Set();
 //* 각 label 요소에 배경 이미지 설정
 article.forEach((label, j) => {
   label.style.backgroundImage = `url(../public/img/cham${j}.jpg)`;
@@ -42,9 +42,7 @@ function imgChange(color, pickDiv) {
       redBtn.style.display = "block";
       blueTeam.style.backgroundColor = "";
       redTeam.style.backgroundColor = "#ff000082";
-      if (teamClick) {
-        teamClick.classList.add("pointerEventNone");
-      }
+
       startTimer();
     }
     //* 레드팀 벤픽 로직
@@ -55,10 +53,11 @@ function imgChange(color, pickDiv) {
       blueTeam.style.backgroundColor = "#0080ff82";
       redTeam.style.backgroundColor = "";
       redBtn.style.display = "none";
-      if (teamClick) {
-        teamClick.classList.add("pointerEventNone");
-      }
       startTimer();
+    }
+    if (teamClick) {
+      teamClick.classList.add("pointerEventNone");
+      savedPicks.add(teamClick); // 저장된 챔피언 목록에 추가
     }
     //* 블루팀 벤픽 카운트 초기화
     if (blueImgIndex === 5 && color === "blue") {
@@ -105,16 +104,14 @@ function banPickLogic(elements) {
 function pickOverlap(banContent) {
   banContent.forEach((element) => {
     element.addEventListener("click", function () {
-      if (redImgIndex < 5 && teamColor === "red") {
-        // imgChange("red", this);
-        teamClick = this;
-        teamColor = "red";
-      } else if (blueImgIndex < 5 && teamColor === "blue") {
-        teamColor = "blue";
-        teamClick = this;
+      // imgChange로 저장된 챔피언은 절대 제거되지 않도록 처리
+      if (teamClick && teamClick !== this && !savedPicks.has(teamClick)) {
+        teamClick.classList.remove("pointerEventNone");
       }
+
+      element.classList.add("pointerEventNone");
+      teamClick = this;
     });
-    // this.classList.remove("pointerEventNone");
   });
 }
 
