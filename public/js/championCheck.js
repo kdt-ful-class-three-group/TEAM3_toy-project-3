@@ -1,5 +1,6 @@
 // DOM 요소 선택
 import startTimer from "./time.js";
+import {sendBanPickData} from "./api.js"
 let championblue = document.getElementById("championblue"); // 블루팀 벤 픽 이미지
 let championred = document.getElementById("championRed"); // 레드팀 벤 픽 이미지
 let blueTeam = document.getElementById("blueTeam"); // 블루팀 챔피언 선택
@@ -70,6 +71,14 @@ function imgChange(color) {
 }
 
 //* 벤픽 로직 함수
+
+// 벤픽 데이터 들어갈 배열 api.js에 fetch로 export
+let banPickData = {
+  blue: { ban: [], pick: [] },
+  red: { ban: [], pick: [] }
+};
+export { banPickData }
+
 function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
@@ -77,17 +86,29 @@ function banPickLogic(elements) {
       // elementdata.style.opacity = "0.3";
       let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
       if (allChecked) {
+        // mainImg 밖으로 뺌.(하나로 쓰려고)// getAtrribute로 data-name가져옴.
+        let mainImg = elementdata.querySelector("img");
+        let championName = mainImg.getAttribute("data-name");
         if (blueBtn.style.display === "block") {
-          let mainImg = elementdata.querySelector("img");
+          // let mainImg = elementdata.querySelector("img");
           let blueImgs = championblue.querySelectorAll("img");
           let blueImg = blueImgs[blueImgIndex];
           blueImg.src = mainImg.src;
+          banPickData.blue.ban.push(championName);
+
+
         } else if (redBtn.style.display === "block") {
-          let mainImg = elementdata.querySelector("img");
+          // let mainImg = elementdata.querySelector("img");
           let redImgs = championred.querySelectorAll("img");
           let redImg = redImgs[redImgIndex];
           redImg.src = mainImg.src;
+          banPickData.red.ban.push(championName);
         }
+        // red,blue 벤이 5개일경우 조건 집어넣음.
+       if (banPickData.blue.ban.length === 5 || banPickData.red.ban.length === 5) {
+        sendBanPickData();
+        }
+        
       } else {
         alert("챔피언을 선택해주세요.");
       }
