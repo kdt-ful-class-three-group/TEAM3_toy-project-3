@@ -104,7 +104,7 @@ function banPickLogic(elements) {
           redImg.src = mainImg.src;
           banPickData.red.ban.push(championName);
         }
-        // red,blue 벤이 5개일경우 조건 집어넣음.
+        // red,blue 벤이 5개일경우 조건 추가.
        if (banPickData.blue.ban.length === 5 || banPickData.red.ban.length === 5) {
         sendBanPickData();
         }
