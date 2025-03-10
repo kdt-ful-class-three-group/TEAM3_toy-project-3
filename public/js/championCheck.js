@@ -28,7 +28,7 @@ clickLabel.forEach((element) => {
   });
 });
 
-//* 이미지 변경 함수
+//* 각 팀별 벤픽 함수
 function imgChange(color) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
   //* 블루팀 벤픽 로직
@@ -39,7 +39,7 @@ function imgChange(color) {
       redBtn.style.display = "block";
       blueTeam.style.backgroundColor = "";
       redTeam.style.backgroundColor = "#ff000082";
-      console.log("blue" + blueImgIndex);
+
       startTimer();
     }
     //* 레드팀 벤픽 로직
@@ -49,7 +49,6 @@ function imgChange(color) {
       blueTeam.style.backgroundColor = "#0080ff82";
       redTeam.style.backgroundColor = "";
       redBtn.style.display = "none";
-      console.log("red" + redImgIndex);
       startTimer();
     }
     //* 블루팀 벤픽 카운트 초기화
@@ -73,17 +72,16 @@ function imgChange(color) {
 function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
+      let mainImg = elementdata.querySelector("img");
+      let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
       // elementdata.style.pointerEvents = "none";
       // elementdata.style.opacity = "0.3";
-      let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
       if (allChecked) {
         if (blueBtn.style.display === "block") {
-          let mainImg = elementdata.querySelector("img");
           let blueImgs = championblue.querySelectorAll("img");
           let blueImg = blueImgs[blueImgIndex];
           blueImg.src = mainImg.src;
         } else if (redBtn.style.display === "block") {
-          let mainImg = elementdata.querySelector("img");
           let redImgs = championred.querySelectorAll("img");
           let redImg = redImgs[redImgIndex];
           redImg.src = mainImg.src;
