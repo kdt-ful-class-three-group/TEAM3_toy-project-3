@@ -10,7 +10,8 @@ let clickLabel = Array.from(document.querySelectorAll(".champion-check input"));
 let blueImgIndex = 0; // 블루팀 벤픽 카운트
 let redImgIndex = 0; // 레드팀 벤픽 카운트
 let article = document.querySelectorAll("article label"); // 모든 label 요소 선택
-
+let teamColor = ""; // 팀 색상
+let teamClick = "";
 //* 각 label 요소에 배경 이미지 설정
 article.forEach((label, j) => {
   label.style.backgroundImage = `url(../public/img/cham${j}.jpg)`;
@@ -29,26 +30,34 @@ clickLabel.forEach((element) => {
 });
 
 //* 각 팀별 벤픽 함수
-function imgChange(color) {
+function imgChange(color, pickDiv) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
+  console.log(pickDiv);
   //* 블루팀 벤픽 로직
   if (allChecked) {
     if (blueImgIndex < 5 && color === "blue") {
       blueImgIndex++;
+      teamColor = color;
       blueBtn.style.display = "none";
       redBtn.style.display = "block";
       blueTeam.style.backgroundColor = "";
       redTeam.style.backgroundColor = "#ff000082";
-
+      if (teamClick) {
+        teamClick.classList.add("pointerEventNone");
+      }
       startTimer();
     }
     //* 레드팀 벤픽 로직
     if (redImgIndex < 5 && color === "red") {
       redImgIndex++;
+      teamColor = color;
       blueBtn.style.display = "block";
       blueTeam.style.backgroundColor = "#0080ff82";
       redTeam.style.backgroundColor = "";
       redBtn.style.display = "none";
+      if (teamClick) {
+        teamClick.classList.add("pointerEventNone");
+      }
       startTimer();
     }
     //* 블루팀 벤픽 카운트 초기화
@@ -74,30 +83,38 @@ function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
       let mainImg = elementdata.querySelector("img");
-      let allChecked = clickLabel.every((input) => input.checked); // 모든 input이 checked인지 확인
-
-      // 모든 요소의 pointerEventNone 클래스를 제거
-      if (blueBtn.style.display === "block") {
-        elementdata.classList.remove("pointerEventNone");
-      } else if (redBtn.style.display === "block") {
-        elementdata.classList.remove("pointerEventNone");
-      }
+      let allChecked = clickLabel.every((input) => input.checked);
       if (allChecked) {
         if (blueBtn.style.display === "block") {
           let blueImgs = championblue.querySelectorAll("img");
           let blueImg = blueImgs[blueImgIndex];
           blueImg.src = mainImg.src;
-          elementdata.classList.add("pointerEventNone");
         } else if (redBtn.style.display === "block") {
           let redImgs = championred.querySelectorAll("img");
           let redImg = redImgs[redImgIndex];
           redImg.src = mainImg.src;
-          elementdata.classList.add("pointerEventNone");
         }
       } else {
         alert("챔피언을 선택해주세요.");
       }
     });
+  });
+  pickOverlap(elements);
+}
+
+function pickOverlap(banContent) {
+  banContent.forEach((element) => {
+    element.addEventListener("click", function () {
+      if (redImgIndex < 5 && teamColor === "red") {
+        // imgChange("red", this);
+        teamClick = this;
+        teamColor = "red";
+      } else if (blueImgIndex < 5 && teamColor === "blue") {
+        teamColor = "blue";
+        teamClick = this;
+      }
+    });
+    // this.classList.remove("pointerEventNone");
   });
 }
 
