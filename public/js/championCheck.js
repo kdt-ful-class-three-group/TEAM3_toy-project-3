@@ -70,21 +70,29 @@ function imgChange(color) {
 
 //* 벤픽 로직 함수
 function banPickLogic(elements) {
+  // elements 모든 챔피언 리스트 div
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
       let mainImg = elementdata.querySelector("img");
-      let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
-      // elementdata.style.pointerEvents = "none";
-      // elementdata.style.opacity = "0.3";
+      let allChecked = clickLabel.every((input) => input.checked); // 모든 input이 checked인지 확인
+
+      // 모든 요소의 pointerEventNone 클래스를 제거
+      if (blueBtn.style.display === "block") {
+        elementdata.classList.remove("pointerEventNone");
+      } else if (redBtn.style.display === "block") {
+        elementdata.classList.remove("pointerEventNone");
+      }
       if (allChecked) {
         if (blueBtn.style.display === "block") {
           let blueImgs = championblue.querySelectorAll("img");
           let blueImg = blueImgs[blueImgIndex];
           blueImg.src = mainImg.src;
+          elementdata.classList.add("pointerEventNone");
         } else if (redBtn.style.display === "block") {
           let redImgs = championred.querySelectorAll("img");
           let redImg = redImgs[redImgIndex];
           redImg.src = mainImg.src;
+          elementdata.classList.add("pointerEventNone");
         }
       } else {
         alert("챔피언을 선택해주세요.");

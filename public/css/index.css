@@ -163,3 +163,8 @@ article > label:last-child {
 .searchWrap input::placeholder {
   color: #fff;
 }
+
+.pointerEventNone {
+  pointer-events: none;
+  opacity: 0.3;
+}
