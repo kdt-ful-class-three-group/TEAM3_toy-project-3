@@ -79,18 +79,26 @@ let banPickData = {
 };
 export { banPickData }
 
-let lastSelectedChampion = null; // 마지막으로 선택한 챔피언 저장 변수
-let lastSelectedImgSrc = null; // 마지막으로 선택한 챔피언 이미지 저장 변수
+let lastSelectedChampion = null; 
+let lastSelectedImgSrc = null; 
 
 function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
-      let allChecked = clickLabel.every((input) => input.checked); // 모든 체크박스 체크 여부 확인
+      let allChecked = clickLabel.every((input) => input.checked);
 
       if (allChecked) {
         let mainImg = elementdata.querySelector("img");
-        lastSelectedChampion = mainImg.getAttribute("data-name"); // 마지막으로 선택한 챔피언명 저장
-        lastSelectedImgSrc = mainImg.src; // 마지막으로 선택한 이미지 저장
+        lastSelectedChampion = mainImg.getAttribute("data-name"); 
+        lastSelectedImgSrc = mainImg.src; 
+
+        if (blueBtn.style.display === "block" && blueImgIndex < 5) {
+          let blueImgs = championblue.querySelectorAll("img");
+          blueImgs[blueImgIndex].src = lastSelectedImgSrc;
+        } else if (redBtn.style.display === "block" && redImgIndex < 5) {
+          let redImgs = championred.querySelectorAll("img");
+          redImgs[redImgIndex].src = lastSelectedImgSrc;
+        }
       } else {
         alert("챔피언을 선택해주세요.");
       }
