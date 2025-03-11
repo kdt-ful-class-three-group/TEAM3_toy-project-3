@@ -10,12 +10,13 @@ let clickLabel = Array.from(document.querySelectorAll(".champion-check input"));
 let blueImgIndex = 0; // 블루팀 벤픽 카운트
 let redImgIndex = 0; // 레드팀 벤픽 카운트
 let article = document.querySelectorAll("article label"); // 모든 label 요소 선택
-
 let txt = document.getElementById("timerMain");
 // let resetBtn1 = document.getElementById("reset-btn1");
 // let resetBtn2 = document.getElementById("reset-btn2");
 // let blueBtn = document.getElementById("blueBanBtn");
 // let redBtn = document.getElementById("redBanBtn");
+let blueImgs = championblue.querySelectorAll("img");
+let redImgs = championred.querySelectorAll("img");
 let seconds = 5;
 let timer;
 let currentTeam = "blue";
@@ -97,11 +98,9 @@ function banPickLogic(elements) {
       let allChecked = clickLabel.every((input) => input.checked);
       if (allChecked) {
         if (blueBtn.style.display === "block") {
-          let blueImgs = championblue.querySelectorAll("img");
           let blueImg = blueImgs[blueImgIndex];
           blueImg.src = mainImg.src;
         } else if (redBtn.style.display === "block") {
-          let redImgs = championred.querySelectorAll("img");
           let redImg = redImgs[redImgIndex];
           redImg.src = mainImg.src;
         }
@@ -159,12 +158,14 @@ function switchTurn() {
     redBtn.style.display = "block";
     blueTeam.style.backgroundColor = "";
     redTeam.style.backgroundColor = "#ff000082";
+    blueImgs[clickCount].src = "./public/img/ban.png";
   } else if (currentTeam === "red") {
     currentTeam = "blue";
     blueBtn.style.display = "block";
     redBtn.style.display = "none";
     redTeam.style.backgroundColor = "";
     blueTeam.style.backgroundColor = "#0080ff82";
+    redImgs[clickCount].src = "./public/img/ban.png";
   }
   //console.log(`현재 턴: ${currentTeam}`);
   clickCount++;
