@@ -1,6 +1,6 @@
 // DOM 요소 선택
 // import startTimer from "./time.js";
-import { sendBanPickData } from "./api.js"
+import { sendBanPickData } from "./api.js";
 // import { banPickData } from "../data/data.js";
 let championblue = document.getElementById("championblue"); // 블루팀 벤 픽 이미지
 let championred = document.getElementById("championRed"); // 레드팀 벤 픽 이미지
@@ -12,13 +12,12 @@ let clickLabel = Array.from(document.querySelectorAll(".champion-check input"));
 let blueImgIndex = 0; // 블루팀 벤픽 카운트
 let redImgIndex = 0; // 레드팀 벤픽 카운트
 let article = document.querySelectorAll("article label"); // 모든 label 요소 선택
+
 let txt = document.getElementById("timerMain");
 // let resetBtn1 = document.getElementById("reset-btn1");
 // let resetBtn2 = document.getElementById("reset-btn2");
 // let blueBtn = document.getElementById("blueBanBtn");
 // let redBtn = document.getElementById("redBanBtn");
-let blueImgs = championblue.querySelectorAll("img");
-let redImgs = championred.querySelectorAll("img");
 let seconds = 5;
 let timer;
 let currentTeam = "blue";
@@ -90,6 +89,16 @@ export function imgChange(color) {
 }
 
 //* 벤픽 로직 함수
+
+let banPickData = { blue: { ban: [], pick: [] }, red: { ban: [], pick: [] } };
+
+export { banPickData };
+// 자꾸 클릭하면 마지막 선택한 챔피언이 계속해서 바뀌는 문제가 있음
+// 변수선언해서 마지막으로 선택한 챔피언을 저장해두고, 버튼 클릭시에 저장된 챔피언을 이미지에 삽입
+let lastSelectedChampion = null;
+let lastSelectedImgSrc = null;
+
+// 벤픽로직 조금 변경.
 function banPickLogic(elements) {
   // elements 모든 챔피언 리스트 div
   elements.forEach((elementdata) => {
@@ -98,8 +107,8 @@ function banPickLogic(elements) {
 
       if (allChecked) {
         let mainImg = elementdata.querySelector("img");
-        lastSelectedChampion = mainImg.getAttribute("data-name"); 
-        lastSelectedImgSrc = mainImg.src; 
+        lastSelectedChampion = mainImg.getAttribute("data-name");
+        lastSelectedImgSrc = mainImg.src;
 
         if (blueBtn.style.display === "block" && blueImgIndex < 5) {
           let blueImgs = championblue.querySelectorAll("img");
@@ -115,7 +124,6 @@ function banPickLogic(elements) {
   });
   pickOverlap(elements);
 }
-
 
 //* 블루팀 버튼 클릭 이벤트
 function pickOverlap(banContent) {
@@ -164,14 +172,12 @@ function switchTurn() {
     redBtn.style.display = "block";
     blueTeam.style.backgroundColor = "";
     redTeam.style.backgroundColor = "#ff000082";
-    blueImgs[clickCount].src = "./public/img/ban.png";
   } else if (currentTeam === "red") {
     currentTeam = "blue";
     blueBtn.style.display = "block";
     redBtn.style.display = "none";
     redTeam.style.backgroundColor = "";
     blueTeam.style.backgroundColor = "#0080ff82";
-    redImgs[clickCount].src = "./public/img/ban.png";
   }
   //console.log(`현재 턴: ${currentTeam}`);
   clickCount++;
@@ -184,11 +190,9 @@ blueBtn.addEventListener("click", () => {
     let blueImg = blueImgs[blueImgIndex];
 
     // 벤 이미지 변경, 데이터추가
-    blueImg.src = lastSelectedImgSrc; 
-    banPickData.blue.ban.push(lastSelectedChampion); 
-    blueImgIndex++; 
-
-   
+    blueImg.src = lastSelectedImgSrc;
+    banPickData.blue.ban.push(lastSelectedChampion);
+    blueImgIndex++;
 
     console.log("Blue Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
@@ -204,11 +208,9 @@ redBtn.addEventListener("click", () => {
     let redImg = redImgs[redImgIndex];
 
     // 벤 이미지 변경, 데이터 추가
-    redImg.src = lastSelectedImgSrc; 
-    banPickData.red.ban.push(lastSelectedChampion); 
-    redImgIndex++; 
-
-  
+    redImg.src = lastSelectedImgSrc;
+    banPickData.red.ban.push(lastSelectedChampion);
+    redImgIndex++;
 
     console.log("Red Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
@@ -216,7 +218,6 @@ redBtn.addEventListener("click", () => {
     }
   }
 });
-
 
 //* 전역 범위에 imgChange 함수를 노출
 window.imgChange = imgChange;
