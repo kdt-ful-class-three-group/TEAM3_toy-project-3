@@ -33,6 +33,7 @@ clickLabel.forEach((element) => {
 function imgChange(color, pickDiv) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
   console.log(pickDiv);
+  console.log(savedPicks)
   //* 블루팀 벤픽 로직
   if (allChecked) {
     if (blueImgIndex < 5 && color === "blue") {
