@@ -44,7 +44,7 @@ clickLabel.forEach((element) => {
 });
 
 //* 각 팀별 벤픽 함수
-export function imgChange(color) {
+export function imgChange(color, timer) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
   console.log(savedPicks);
   //* 블루팀 벤픽 로직
@@ -156,33 +156,37 @@ function startTimer() {
     if (seconds === 0) {
       if (currentTeam === "blue") {
         blueImgIndex++;
+        currentTeam = "red";
+        imgChange("blue");
       } else {
         redImgIndex++;
+        currentTeam = "blue";
+        imgChange("red", timer);
       }
       // clearInterval(timer);
-      switchTurn(); // 30초 후 자동 턴 변경
+      // switchTurn(); // 30초 후 자동 턴 변경
     }
   }, 1000);
 }
 
-function switchTurn() {
-  if (currentTeam === "blue") {
-    currentTeam = "red";
-    blueBtn.style.display = "none";
-    redBtn.style.display = "block";
-    blueTeam.style.backgroundColor = "";
-    redTeam.style.backgroundColor = "#ff000082";
-  } else if (currentTeam === "red") {
-    currentTeam = "blue";
-    blueBtn.style.display = "block";
-    redBtn.style.display = "none";
-    redTeam.style.backgroundColor = "";
-    blueTeam.style.backgroundColor = "#0080ff82";
-  }
-  //console.log(`현재 턴: ${currentTeam}`);
-  clickCount++;
-  startTimer(); // 턴이 바뀌면 타이머 다시 시작
-}
+// function switchTurn() {
+//   if (currentTeam === "blue") {
+//     currentTeam = "red";
+//     blueBtn.style.display = "none";
+//     redBtn.style.display = "block";
+//     blueTeam.style.backgroundColor = "";
+//     redTeam.style.backgroundColor = "#ff000082";
+//   } else if (currentTeam === "red") {
+//     currentTeam = "blue";
+//     blueBtn.style.display = "block";
+//     redBtn.style.display = "none";
+//     redTeam.style.backgroundColor = "";
+//     blueTeam.style.backgroundColor = "#0080ff82";
+//   }
+//   //console.log(`현재 턴: ${currentTeam}`);
+//   clickCount++;
+//   startTimer(); // 턴이 바뀌면 타이머 다시 시작
+// }
 
 blueBtn.addEventListener("click", () => {
   if (lastSelectedChampion && blueImgIndex < 5) {
