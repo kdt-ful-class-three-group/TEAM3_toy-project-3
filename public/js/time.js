@@ -72,30 +72,6 @@ redBtn.addEventListener("click", () => {
   }
 });
 
-function banPickLogic(elements) {
-  elements.forEach((elementdata) => {
-    elementdata.addEventListener("click", () => {
-      elementdata.style.pointerEvents = "none";
-      elementdata.style.opacity = "0.3";
-      let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
-      if (allChecked) {
-        if (blueBtn.style.display === "block") {
-          let mainImg = elementdata.querySelector("img");
-          let blueImgs = championblue.querySelectorAll("img");
-          let blueImg = blueImgs[blueImgIndex];
-          blueImg.src = mainImg.src;
-        } else if (redBtn.style.display === "block") {
-          let mainImg = elementdata.querySelector("img");
-          let redImgs = championred.querySelectorAll("img");
-          let redImg = redImgs[redImgIndex];
-          redImg.src = mainImg.src;
-        }
-      } else {
-        alert("챔피언을 선택해주세요.");
-      }
-    });
-  });
-}
 
 export default startTimer;
 // startTimer();/
