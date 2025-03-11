@@ -35,7 +35,7 @@ function imgChange(color) {
   //* 블루팀 벤픽 로직
   if (allChecked) {
     if (blueImgIndex < 5 && color === "blue") {
-      blueImgIndex++;
+      // blueImgIndex++;
       blueBtn.style.display = "none";
       redBtn.style.display = "block";
       blueTeam.style.backgroundColor = "";
@@ -45,7 +45,7 @@ function imgChange(color) {
     }
     //* 레드팀 벤픽 로직
     if (redImgIndex < 5 && color === "red") {
-      redImgIndex++;
+      // redImgIndex++;
       blueBtn.style.display = "block";
       blueTeam.style.backgroundColor = "#0080ff82";
       redTeam.style.backgroundColor = "";
@@ -79,46 +79,63 @@ let banPickData = {
 };
 export { banPickData }
 
+let lastSelectedChampion = null; // 마지막으로 선택한 챔피언 저장 변수
+let lastSelectedImgSrc = null; // 마지막으로 선택한 챔피언 이미지 저장 변수
+
 function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
-      // elementdata.style.pointerEvents = "none";
-      // elementdata.style.opacity = "0.3";
-      let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
+      let allChecked = clickLabel.every((input) => input.checked); // 모든 체크박스 체크 여부 확인
+
       if (allChecked) {
-        // mainImg 밖으로 뺌.(하나로 쓰려고)// getAtrribute로 data-name가져옴.
         let mainImg = elementdata.querySelector("img");
-        let championName = mainImg.getAttribute("data-name");
-        if (blueBtn.style.display === "block") {
-          // let mainImg = elementdata.querySelector("img");
-          if (blueImgIndex < 5) {
-            let blueImgs = championblue.querySelectorAll("img");
-            let blueImg = blueImgs[blueImgIndex];
-            blueImg.src = mainImg.src;
-            banPickData.blue.ban.push(championName);
-          }
-
-
-        } else if (redBtn.style.display === "block") {
-          // let mainImg = elementdata.querySelector("img");
-          if (redImgIndex < 5) {
-            let redImgs = championred.querySelectorAll("img");
-            let redImg = redImgs[redImgIndex];
-            redImg.src = mainImg.src;
-            banPickData.red.ban.push(championName);
-          }
-        }
-        // red,blue 벤이 5개일경우 조건 추가.
-       if (banPickData.blue.ban.length === 5 || banPickData.red.ban.length === 5) {
-        sendBanPickData();
-        }
-        
+        lastSelectedChampion = mainImg.getAttribute("data-name"); // 마지막으로 선택한 챔피언명 저장
+        lastSelectedImgSrc = mainImg.src; // 마지막으로 선택한 이미지 저장
       } else {
         alert("챔피언을 선택해주세요.");
       }
     });
   });
 }
+
+//* 블루팀 버튼 클릭 이벤트
+blueBtn.addEventListener("click", () => {
+  if (lastSelectedChampion && blueImgIndex < 5) {
+    let blueImgs = championblue.querySelectorAll("img");
+    let blueImg = blueImgs[blueImgIndex];
+
+    blueImg.src = lastSelectedImgSrc; // 이미지 업데이트
+    banPickData.blue.ban.push(lastSelectedChampion); // 마지막으로 선택한 챔피언 저장
+    blueImgIndex++; // 다음 슬롯으로 이동
+
+   
+
+    console.log("Blue Team Banned: " + lastSelectedChampion);
+    if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
+      sendBanPickData(banPickData);
+    }
+  }
+});
+
+//* 레드팀 버튼 클릭 이벤트
+redBtn.addEventListener("click", () => {
+  if (lastSelectedChampion && redImgIndex < 5) {
+    let redImgs = championred.querySelectorAll("img");
+    let redImg = redImgs[redImgIndex];
+
+    redImg.src = lastSelectedImgSrc; // 이미지 업데이트
+    banPickData.red.ban.push(lastSelectedChampion); // 마지막으로 선택한 챔피언 저장
+    redImgIndex++; // 다음 슬롯으로 이동
+
+  
+
+    console.log("Red Team Banned: " + lastSelectedChampion);
+    if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
+      sendBanPickData(banPickData);
+    }
+  }
+});
+
 
 //* 전역 범위에 imgChange 함수를 노출
 window.imgChange = imgChange;
