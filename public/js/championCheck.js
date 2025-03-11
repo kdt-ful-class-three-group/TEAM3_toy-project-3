@@ -11,6 +11,8 @@ let blueImgIndex = 0; // 블루팀 벤픽 카운트
 let redImgIndex = 0; // 레드팀 벤픽 카운트
 let article = document.querySelectorAll("article label"); // 모든 label 요소 선택
 let teamClick = "";
+let teamColor = ""; // 팀 색상
+
 const savedPicks = new Set();
 //* 각 label 요소에 배경 이미지 설정
 article.forEach((label, j) => {
@@ -30,9 +32,9 @@ clickLabel.forEach((element) => {
 });
 
 //* 각 팀별 벤픽 함수
-function imgChange(color, pickDiv) {
+export function imgChange(color) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
-  console.log(pickDiv);
+
   //* 블루팀 벤픽 로직
   if (allChecked) {
     if (blueImgIndex < 5 && color === "blue") {
