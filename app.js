@@ -26,6 +26,18 @@ app.get("/champ", (req, res) => {
   // console.log(champion);
   res.json(champion);
 });
+app.post("/save", (req, res) => {
+  const banPickData = req.body;
+  const filePath = path.join(__dirname, "banpick.json");
+
+  fs.writeFile(filePath, JSON.stringify(banPickData, null, 2), "utf8", (err) => {
+    if (err) {
+      return res.status(500).json({ message: "데이터 저장 실패" });
+    }
+    res.json({ message: "데이터 저장 성공!" });
+  });
+});
+
 
 app.listen(PORT, () => {
   console.log(`loading... http://localhost:${PORT}`);
