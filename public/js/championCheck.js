@@ -134,7 +134,7 @@ function startTimer() {
     window.location.reload(); // 새로고침
   }
   clearInterval(timer);
-  seconds = 30;
+  seconds = 5;
   txt.textContent = seconds + "초";
 
   timer = setInterval(() => {
