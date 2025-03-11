@@ -122,7 +122,77 @@ function banPickLogic(elements) {
       }
     });
   });
+  pickOverlap(elements);
 }
+function pickOverlap(banContent) {
+  banContent.forEach((element) => {
+    element.addEventListener("click", function () {
+      // imgChange로 저장된 챔피언은 절대 제거되지 않도록 처리
+      if (teamClick && teamClick !== this && !savedPicks.has(teamClick)) {
+        teamClick.classList.remove("pointerEventNone");
+      }
+
+      element.classList.add("pointerEventNone");
+      teamClick = this;
+    });
+  });
+}
+
+function startTimer() {
+  if (clickCount >= 10) {
+    alert("끝났습니다!");
+    clickCount = 0; //초기화
+    window.location.reload(); // 새로고침
+  }
+  clearInterval(timer);
+  seconds = 5;
+  txt.textContent = seconds + "초";
+
+  timer = setInterval(() => {
+    seconds--;
+    txt.textContent = seconds + "초";
+    if (seconds === 0) {
+      if (currentTeam === "blue") {
+        blueImgIndex++;
+      } else {
+        redImgIndex++;
+      }
+      // clearInterval(timer);
+      switchTurn(); // 30초 후 자동 턴 변경
+    }
+  }, 1000);
+}
+
+function switchTurn() {
+  if (currentTeam === "blue") {
+    currentTeam = "red";
+    blueBtn.style.display = "none";
+    redBtn.style.display = "block";
+    blueTeam.style.backgroundColor = "";
+    redTeam.style.backgroundColor = "#ff000082";
+  } else if (currentTeam === "red") {
+    currentTeam = "blue";
+    blueBtn.style.display = "block";
+    redBtn.style.display = "none";
+    redTeam.style.backgroundColor = "";
+    blueTeam.style.backgroundColor = "#0080ff82";
+  }
+  //console.log(`현재 턴: ${currentTeam}`);
+  clickCount++;
+  startTimer(); // 턴이 바뀌면 타이머 다시 시작
+}
+
+blueBtn.addEventListener("click", () => {
+  if (currentTeam === "blue") {
+    switchTurn();
+  }
+});
+
+redBtn.addEventListener("click", () => {
+  if (currentTeam === "red") {
+    switchTurn();
+  }
+});
 
 //* 블루팀 버튼 클릭 이벤트
 blueBtn.addEventListener("click", () => {
