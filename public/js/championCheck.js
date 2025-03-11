@@ -142,15 +142,10 @@ function pickOverlap(banContent) {
 }
 
 function startTimer() {
-  if (clickCount >= 10) {
-    alert("끝났습니다!");
-    clickCount = 0; //초기화
-    window.location.reload(); // 새로고침
-  }
   clearInterval(timer);
   seconds = 5;
   txt.textContent = seconds + "초";
-
+  
   timer = setInterval(() => {
     seconds--;
     txt.textContent = seconds + "초";
@@ -167,6 +162,17 @@ function startTimer() {
 }
 
 function switchTurn() {
+  clickCount++; // ✅ 턴이 변경될 때도 clickCount 증가
+  console.log("현재 클릭 횟수:", clickCount);
+
+  // ✅ 10번 진행되었으면 종료
+  if (clickCount >= 10) {
+    alert("끝났습니다!");
+    clearInterval(timer); // ⬅️ 타이머 정지
+    window.location.reload(); // 새로고침
+    return;
+  }
+
   if (currentTeam === "blue") {
     currentTeam = "red";
     blueBtn.style.display = "none";
@@ -180,10 +186,10 @@ function switchTurn() {
     redTeam.style.backgroundColor = "";
     blueTeam.style.backgroundColor = "#0080ff82";
   }
-  //console.log(`현재 턴: ${currentTeam}`);
-  clickCount++;
-  startTimer(); // 턴이 바뀌면 타이머 다시 시작
+
+  startTimer(); // ⬅️ 턴이 바뀌면 타이머 다시 시작
 }
+
 
 blueBtn.addEventListener("click", () => {
   if (lastSelectedChampion && blueImgIndex < 5) {
@@ -195,12 +201,12 @@ blueBtn.addEventListener("click", () => {
     banPickData.blue.ban.push(lastSelectedChampion); 
     blueImgIndex++; 
 
-   
-
     console.log("Blue Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
       sendBanPickData(banPickData);
     }
+   
+    switchTurn();
   }
 });
 
@@ -214,13 +220,14 @@ redBtn.addEventListener("click", () => {
     redImg.src = lastSelectedImgSrc; 
     banPickData.red.ban.push(lastSelectedChampion); 
     redImgIndex++; 
-
   
 
     console.log("Red Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
       sendBanPickData(banPickData);
     }
+
+    switchTurn();
   }
 });
 
