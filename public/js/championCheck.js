@@ -1,6 +1,6 @@
 // DOM 요소 선택
 // import startTimer from "./time.js";
-import { sendBanPickData } from "./api.js"
+import { sendBanPickData } from "./api.js";
 // import { banPickData } from "../data/data.js";
 let championblue = document.getElementById("championblue"); // 블루팀 벤 픽 이미지
 let championred = document.getElementById("championRed"); // 레드팀 벤 픽 이미지
@@ -95,8 +95,8 @@ let banPickData = { blue: { ban: [], pick: [] }, red: { ban: [], pick: [] } };
 export { banPickData };
 // 자꾸 클릭하면 마지막 선택한 챔피언이 계속해서 바뀌는 문제가 있음
 // 변수선언해서 마지막으로 선택한 챔피언을 저장해두고, 버튼 클릭시에 저장된 챔피언을 이미지에 삽입
-let lastSelectedChampion = null; 
-let lastSelectedImgSrc = null; 
+let lastSelectedChampion = null;
+let lastSelectedImgSrc = null;
 
 // 벤픽로직 조금 변경.
 function banPickLogic(elements) {
@@ -107,8 +107,8 @@ function banPickLogic(elements) {
 
       if (allChecked) {
         let mainImg = elementdata.querySelector("img");
-        lastSelectedChampion = mainImg.getAttribute("data-name"); 
-        lastSelectedImgSrc = mainImg.src; 
+        lastSelectedChampion = mainImg.getAttribute("data-name");
+        lastSelectedImgSrc = mainImg.src;
 
         if (blueBtn.style.display === "block" && blueImgIndex < 5) {
           let blueImgs = championblue.querySelectorAll("img");
@@ -124,7 +124,6 @@ function banPickLogic(elements) {
   });
   pickOverlap(elements);
 }
-
 
 //* 블루팀 버튼 클릭 이벤트
 function pickOverlap(banContent) {
@@ -230,7 +229,6 @@ redBtn.addEventListener("click", () => {
     switchTurn();
   }
 });
-
 
 //* 전역 범위에 imgChange 함수를 노출
 window.imgChange = imgChange;
