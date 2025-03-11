@@ -1,3 +1,4 @@
+import imgChange from "./championCheck.js";
 let txt = document.getElementById("timerMain");
 // let resetBtn1 = document.getElementById("reset-btn1");
 // let resetBtn2 = document.getElementById("reset-btn2");
@@ -61,13 +62,13 @@ function switchTurn() {
 
 blueBtn.addEventListener("click", () => {
   if (currentTeam === "blue") {
-    switchTurn();
+    switchTurn("blue");
   }
 });
 
 redBtn.addEventListener("click", () => {
   if (currentTeam === "red") {
-    switchTurn();
+    switchTurn("red");
   }
 });
 
