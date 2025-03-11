@@ -1,6 +1,7 @@
 // DOM 요소 선택
 import startTimer from "./time.js";
-import {sendBanPickData} from "./api.js"
+import { sendBanPickData } from "./api.js"
+// import { banPickData } from "../data/data.js";
 let championblue = document.getElementById("championblue"); // 블루팀 벤 픽 이미지
 let championred = document.getElementById("championRed"); // 레드팀 벤 픽 이미지
 let blueTeam = document.getElementById("blueTeam"); // 블루팀 챔피언 선택
@@ -72,16 +73,15 @@ function imgChange(color) {
 
 //* 벤픽 로직 함수
 
-// 벤픽 데이터 들어갈 배열 api.js에 fetch로 export
-let banPickData = {
-  blue: { ban: [], pick: [] },
-  red: { ban: [], pick: [] }
-};
-export { banPickData }
+let banPickData = { blue: { ban: [], pick: [] }, red: { ban: [], pick: [] } };
 
+export { banPickData };
+// 자꾸 클릭하면 마지막 선택한 챔피언이 계속해서 바뀌는 문제가 있음
+// 변수선언해서 마지막으로 선택한 챔피언을 저장해두고, 버튼 클릭시에 저장된 챔피언을 이미지에 삽입
 let lastSelectedChampion = null; 
 let lastSelectedImgSrc = null; 
 
+// 벤픽로직 조금 변경.
 function banPickLogic(elements) {
   elements.forEach((elementdata) => {
     elementdata.addEventListener("click", () => {
@@ -112,9 +112,10 @@ blueBtn.addEventListener("click", () => {
     let blueImgs = championblue.querySelectorAll("img");
     let blueImg = blueImgs[blueImgIndex];
 
-    blueImg.src = lastSelectedImgSrc; // 이미지 업데이트
-    banPickData.blue.ban.push(lastSelectedChampion); // 마지막으로 선택한 챔피언 저장
-    blueImgIndex++; // 다음 슬롯으로 이동
+    // 벤 이미지 변경, 데이터추가
+    blueImg.src = lastSelectedImgSrc; 
+    banPickData.blue.ban.push(lastSelectedChampion); 
+    blueImgIndex++; 
 
    
 
@@ -131,9 +132,10 @@ redBtn.addEventListener("click", () => {
     let redImgs = championred.querySelectorAll("img");
     let redImg = redImgs[redImgIndex];
 
-    redImg.src = lastSelectedImgSrc; // 이미지 업데이트
-    banPickData.red.ban.push(lastSelectedChampion); // 마지막으로 선택한 챔피언 저장
-    redImgIndex++; // 다음 슬롯으로 이동
+    // 벤 이미지 변경, 데이터 추가
+    redImg.src = lastSelectedImgSrc; 
+    banPickData.red.ban.push(lastSelectedChampion); 
+    redImgIndex++; 
 
   
 
