@@ -91,18 +91,22 @@ function banPickLogic(elements) {
         let championName = mainImg.getAttribute("data-name");
         if (blueBtn.style.display === "block") {
           // let mainImg = elementdata.querySelector("img");
-          let blueImgs = championblue.querySelectorAll("img");
-          let blueImg = blueImgs[blueImgIndex];
-          blueImg.src = mainImg.src;
-          banPickData.blue.ban.push(championName);
+          if (blueImgIndex < 5) {
+            let blueImgs = championblue.querySelectorAll("img");
+            let blueImg = blueImgs[blueImgIndex];
+            blueImg.src = mainImg.src;
+            banPickData.blue.ban.push(championName);
+          }
 
 
         } else if (redBtn.style.display === "block") {
           // let mainImg = elementdata.querySelector("img");
-          let redImgs = championred.querySelectorAll("img");
-          let redImg = redImgs[redImgIndex];
-          redImg.src = mainImg.src;
-          banPickData.red.ban.push(championName);
+          if (redImgIndex < 5) {
+            let redImgs = championred.querySelectorAll("img");
+            let redImg = redImgs[redImgIndex];
+            redImg.src = mainImg.src;
+            banPickData.red.ban.push(championName);
+          }
         }
         // red,blue 벤이 5개일경우 조건 추가.
        if (banPickData.blue.ban.length === 5 || banPickData.red.ban.length === 5) {
