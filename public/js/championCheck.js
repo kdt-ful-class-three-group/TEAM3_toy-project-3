@@ -1,5 +1,5 @@
 // DOM 요소 선택
-import startTimer from "./time.js";
+// import startTimer from "./time.js";
 import { sendBanPickData } from "./api.js"
 // import { banPickData } from "../data/data.js";
 let championblue = document.getElementById("championblue"); // 블루팀 벤 픽 이미지
@@ -122,7 +122,9 @@ function banPickLogic(elements) {
       }
     });
   });
+  pickOverlap(elements);
 }
+
 
 //* 블루팀 버튼 클릭 이벤트
 function pickOverlap(banContent) {
