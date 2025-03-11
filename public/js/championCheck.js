@@ -1,5 +1,5 @@
 // DOM 요소 선택
-import startTimer from "./time.js";
+//import startTimer from "./time.js";
 let championblue = document.getElementById("championblue"); // 블루팀 벤 픽 이미지
 let championred = document.getElementById("championRed"); // 레드팀 벤 픽 이미지
 let blueTeam = document.getElementById("blueTeam"); // 블루팀 챔피언 선택
@@ -10,6 +10,16 @@ let clickLabel = Array.from(document.querySelectorAll(".champion-check input"));
 let blueImgIndex = 0; // 블루팀 벤픽 카운트
 let redImgIndex = 0; // 레드팀 벤픽 카운트
 let article = document.querySelectorAll("article label"); // 모든 label 요소 선택
+
+let txt = document.getElementById("timerMain");
+// let resetBtn1 = document.getElementById("reset-btn1");
+// let resetBtn2 = document.getElementById("reset-btn2");
+// let blueBtn = document.getElementById("blueBanBtn");
+// let redBtn = document.getElementById("redBanBtn");
+let seconds = 5;
+let timer;
+let currentTeam = "blue";
+let clickCount = 0;
 let teamClick = "";
 let teamColor = ""; // 팀 색상
 
@@ -116,6 +126,62 @@ function pickOverlap(banContent) {
     });
   });
 }
+
+function startTimer() {
+  if (clickCount >= 10) {
+    alert("끝났습니다!");
+    clickCount = 0; //초기화
+    window.location.reload(); // 새로고침
+  }
+  clearInterval(timer);
+  seconds = 30;
+  txt.textContent = seconds + "초";
+
+  timer = setInterval(() => {
+    seconds--;
+    txt.textContent = seconds + "초";
+    if (seconds === 0) {
+      if (currentTeam === "blue") {
+        blueImgIndex++;
+      } else {
+        redImgIndex++;
+      }
+      // clearInterval(timer);
+      switchTurn(); // 30초 후 자동 턴 변경
+    }
+  }, 1000);
+}
+
+function switchTurn() {
+  if (currentTeam === "blue") {
+    currentTeam = "red";
+    blueBtn.style.display = "none";
+    redBtn.style.display = "block";
+    blueTeam.style.backgroundColor = "";
+    redTeam.style.backgroundColor = "#ff000082";
+  } else if (currentTeam === "red") {
+    currentTeam = "blue";
+    blueBtn.style.display = "block";
+    redBtn.style.display = "none";
+    redTeam.style.backgroundColor = "";
+    blueTeam.style.backgroundColor = "#0080ff82";
+  }
+  //console.log(`현재 턴: ${currentTeam}`);
+  clickCount++;
+  startTimer(); // 턴이 바뀌면 타이머 다시 시작
+}
+
+blueBtn.addEventListener("click", () => {
+  if (currentTeam === "blue") {
+    switchTurn();
+  }
+});
+
+redBtn.addEventListener("click", () => {
+  if (currentTeam === "red") {
+    switchTurn();
+  }
+});
 
 //* 전역 범위에 imgChange 함수를 노출
 window.imgChange = imgChange;
