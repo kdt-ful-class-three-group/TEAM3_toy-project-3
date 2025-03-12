@@ -18,6 +18,7 @@ let txt = document.getElementById("timerMain");
 // let resetBtn2 = document.getElementById("reset-btn2");
 // let blueBtn = document.getElementById("blueBanBtn");
 // let redBtn = document.getElementById("redBanBtn");
+
 let seconds = 5;
 let timer;
 let currentTeam = "blue";
@@ -117,6 +118,7 @@ function banPickLogic(elements) {
           let redImgs = championred.querySelectorAll("img");
           redImgs[redImgIndex].src = lastSelectedImgSrc;
         }
+        enableBanButton(); //버튼 비활성화
       } else {
         alert("챔피언을 선택해주세요.");
       }
@@ -140,15 +142,29 @@ function pickOverlap(banContent) {
   });
 }
 
+blueBtn.disabled = true;
+redBtn.disabled = true;
+
+function enableBanButton() {
+  if (currentTeam === "blue") {
+    blueBtn.disabled = false;
+    redBtn.disabled = true;
+  } else {
+    redBtn.disabled = false;
+    blueBtn.disabled = true;
+  }
+}
+
 function startTimer() {
   clearInterval(timer);
   seconds = 5;
   txt.textContent = seconds + "초";
-  
+
   timer = setInterval(() => {
     seconds--;
     txt.textContent = seconds + "초";
     if (seconds === 0) {
+      clearSelectedChampion();
       if (currentTeam === "blue") {
         blueImgIndex++;
       } else {
@@ -160,14 +176,33 @@ function startTimer() {
   }, 1000);
 }
 
+function clearSelectedChampion() {
+  lastSelectedChampion = null;
+  lastSelectedImgSrc = null;
+
+  //  벤픽 칸에서 선택된 챔피언 사진 제거
+  //let blueImgs = championblue.querySelectorAll("img");
+  //let redImgs = championred.querySelectorAll("img");
+
+  if (currentTeam === "blue" && blueImgIndex > 0) {
+    blueImgs[blueImgIndex].src = "../public/img/splash/ban.png"; // 최근 추가된 챔피언 사진 제거
+  }
+  if (currentTeam === "red" && redImgIndex > 0) {
+    redImgs[redImgIndex].src = "../public/img/splash/ban.png";
+  }
+
+  //  버튼 비활성화 (다시 선택해야 함)
+  blueBtn.disabled = true;
+  redBtn.disabled = true;
+}
 function switchTurn() {
-  clickCount++; // ✅ 턴이 변경될 때도 clickCount 증가
+  clickCount++; //  턴이 변경될 때 clickCount 증가
   console.log("현재 클릭 횟수:", clickCount);
 
-  // ✅ 10번 진행되었으면 종료
+  // 10번 진행되었으면 종료
   if (clickCount >= 10) {
     alert("끝났습니다!");
-    clearInterval(timer); // ⬅️ 타이머 정지
+    clearInterval(timer); //  타이머 정지
     window.location.reload(); // 새로고침
     return;
   }
@@ -186,9 +221,8 @@ function switchTurn() {
     blueTeam.style.backgroundColor = "#0080ff82";
   }
 
-  startTimer(); // ⬅️ 턴이 바뀌면 타이머 다시 시작
+  startTimer(); // 턴이 바뀌면 타이머 다시 시작
 }
-
 
 blueBtn.addEventListener("click", () => {
   if (lastSelectedChampion && blueImgIndex < 5) {
@@ -196,19 +230,18 @@ blueBtn.addEventListener("click", () => {
     let blueImg = blueImgs[blueImgIndex];
 
     // 벤 이미지 변경, 데이터추가
-    blueImg.src = lastSelectedImgSrc; 
-    banPickData.blue.ban.push(lastSelectedChampion); 
-    blueImgIndex++; 
+    blueImg.src = lastSelectedImgSrc;
+    banPickData.blue.ban.push(lastSelectedChampion);
+    blueImgIndex++;
 
     console.log("Blue Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
       sendBanPickData(banPickData);
     }
-   
+
     switchTurn();
   }
 });
-
 //* 레드팀 버튼 클릭 이벤트
 redBtn.addEventListener("click", () => {
   if (lastSelectedChampion && redImgIndex < 5) {
@@ -216,10 +249,9 @@ redBtn.addEventListener("click", () => {
     let redImg = redImgs[redImgIndex];
 
     // 벤 이미지 변경, 데이터 추가
-    redImg.src = lastSelectedImgSrc; 
-    banPickData.red.ban.push(lastSelectedChampion); 
-    redImgIndex++; 
-  
+    redImg.src = lastSelectedImgSrc;
+    banPickData.red.ban.push(lastSelectedChampion);
+    redImgIndex++;
 
     console.log("Red Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
