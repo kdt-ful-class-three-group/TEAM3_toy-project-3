@@ -98,6 +98,19 @@ export { banPickData };
 let lastSelectedChampion = null;
 let lastSelectedImgSrc = null;
 
+function banCheck(){
+  if(banPickData.blue.ban && banPickData.red.ban){
+    const doubleBan = banPickData.blue.ban.filter((ban) => banPickData.red.ban.includes(ban));
+    if (doubleBan.length > 0) {
+
+      alert("중복된 챔피언이 있습니다.");
+
+
+
+    }
+  }
+}
+
 // 벤픽로직 조금 변경.
 function banPickLogic(elements) {
   // elements 모든 챔피언 리스트 div
@@ -204,6 +217,8 @@ blueBtn.addEventListener("click", () => {
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
       sendBanPickData(banPickData);
     }
+
+    banCheck()
    
     switchTurn();
   }
@@ -225,7 +240,7 @@ redBtn.addEventListener("click", () => {
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
       sendBanPickData(banPickData);
     }
-
+    banCheck()
     switchTurn();
   }
 });
