@@ -204,38 +204,30 @@ function switchTurn() {
   startTimer(); // 턴이 바뀌면 타이머 다시 시작
 }
 
-//* 블루팀 버튼 클릭 이벤트
-let blueBanIndex = 0;   // 벤픽 영역용 카운터 (최대 5)
-let blueLabelIndex = 0; // 체크박스 라벨 업데이트용 카운터 (최대 5)
+let blueBanIndex = 0;   
+let blueLabelIndex = 0; 
 
 blueBtn.addEventListener("click", () => {
-  if (!lastSelectedChampion) {
-    alert("챔피언을 선택하세요!");
-    return;
-  }
-  
-  // 벤픽 영역(이미지 5칸)이 아직 채워지지 않았다면
+
   if (blueBanIndex < 5) {
     let blueImgs = championblue.querySelectorAll("img");
     let blueImg = blueImgs[blueBanIndex];
     
-    // 벤픽 영역에 선택된 챔피언 이미지 업데이트
+
     blueImg.src = lastSelectedImgSrc; 
     banPickData.blue.ban.push(lastSelectedChampion);
     console.log("Blue Team Banned: " + lastSelectedChampion);
     blueBanIndex++;
   }
-  // 벤픽 영역이 다 찼으면, 이후에는 체크박스 라벨에 차례대로 이미지 업데이트
+
   else {
     let blueLabels = Array.from(document.querySelectorAll("#blueTeam label"));
     if (blueLabelIndex < blueLabels.length) {
       blueLabels[blueLabelIndex].style.backgroundImage = `url(${lastSelectedImgSrc})`;
       blueLabels[blueLabelIndex].style.backgroundSize = "cover";
-      console.log("Blue Team Label Updated: " + lastSelectedChampion);
+      console.log("Blue Team Label Updated (index " + blueLabelIndex + "): " + lastSelectedChampion);
       blueLabelIndex++;
-    } else {
-      alert("모든 벤픽 슬롯과 라벨이 채워졌습니다.");
-    }
+    }  
   }
   
   // 턴 전환 등 추가 동작
