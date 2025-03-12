@@ -170,7 +170,6 @@ function startTimer() {
       } else {
         redImgIndex++;
       }
-      // clearInterval(timer);
       switchTurn(); // 30초 후 자동 턴 변경
     }
   }, 1000);
@@ -183,7 +182,7 @@ function switchTurn() {
   // 10번 진행되었으면 종료
   if (clickCount >= 10) {
     alert("끝났습니다!");
-    clearInterval(timer); //  타이머 정지
+    // clearInterval(timer); //  타이머 정지
     window.location.reload(); // 새로고침
     return;
   }
@@ -194,15 +193,14 @@ function switchTurn() {
     redBtn.style.display = "block";
     blueTeam.style.backgroundColor = "";
     redTeam.style.backgroundColor = "#ff000082";
-    blueImgs[clickCount].src = "./public/img/ban.png";
   } else if (currentTeam === "red") {
     currentTeam = "blue";
     blueBtn.style.display = "block";
     redBtn.style.display = "none";
     redTeam.style.backgroundColor = "";
     blueTeam.style.backgroundColor = "#0080ff82";
-    redImgs[clickCount].src = "./public/img/ban.png";
   }
+  lastSelectedChampion = null;
   startTimer(); // 턴이 바뀌면 타이머 다시 시작
 }
 
