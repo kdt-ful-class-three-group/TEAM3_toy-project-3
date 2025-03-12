@@ -203,7 +203,7 @@ function switchTurn() {
   lastSelectedChampion = null;
   startTimer(); // 턴이 바뀌면 타이머 다시 시작
 }
-
+// 블루 챔피언 선택
 let blueBanIndex = 0;   
 let blueLabelIndex = 0; 
 
