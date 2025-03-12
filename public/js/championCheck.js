@@ -29,9 +29,9 @@ let teamColor = ""; // 팀 색상
 
 const savedPicks = new Set();
 //* 각 label 요소에 배경 이미지 설정
-article.forEach((label, j) => {
-  label.style.backgroundImage = `url(../public/img/cham${j}.jpg)`;
-});
+// article.forEach((label, j) => {
+//   label.style.backgroundImage = `url(../public/img/cham${j}.jpg)`;
+// });
 
 //* 체크박스 클릭 이벤트 설정
 clickLabel.forEach((element) => {
@@ -180,7 +180,7 @@ function switchTurn() {
   console.log("현재 클릭 횟수:", clickCount);
 
   // 10번 진행되었으면 종료
-  if (clickCount >= 10) {
+  if (clickCount >= 20) {
     alert("끝났습니다!");
     // clearInterval(timer); //  타이머 정지
     window.location.reload(); // 새로고침
@@ -205,24 +205,44 @@ function switchTurn() {
 }
 
 //* 블루팀 버튼 클릭 이벤트
+let blueBanIndex = 0;   // 벤픽 영역용 카운터 (최대 5)
+let blueLabelIndex = 0; // 체크박스 라벨 업데이트용 카운터 (최대 5)
+
 blueBtn.addEventListener("click", () => {
-  if (lastSelectedChampion && blueImgIndex < 5) {
-    let blueImgs = championblue.querySelectorAll("img");
-    let blueImg = blueImgs[blueImgIndex];
-
-    // 벤 이미지 변경, 데이터추가
-    blueImg.src = lastSelectedImgSrc;
-    banPickData.blue.ban.push(lastSelectedChampion);
-    blueImgIndex++;
-
-    console.log("Blue Team Banned: " + lastSelectedChampion);
-    if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
-      sendBanPickData(banPickData);
-    }
-
-    switchTurn();
+  if (!lastSelectedChampion) {
+    alert("챔피언을 선택하세요!");
+    return;
   }
+  
+  // 벤픽 영역(이미지 5칸)이 아직 채워지지 않았다면
+  if (blueBanIndex < 5) {
+    let blueImgs = championblue.querySelectorAll("img");
+    let blueImg = blueImgs[blueBanIndex];
+    
+    // 벤픽 영역에 선택된 챔피언 이미지 업데이트
+    blueImg.src = lastSelectedImgSrc; 
+    banPickData.blue.ban.push(lastSelectedChampion);
+    console.log("Blue Team Banned: " + lastSelectedChampion);
+    blueBanIndex++;
+  }
+  // 벤픽 영역이 다 찼으면, 이후에는 체크박스 라벨에 차례대로 이미지 업데이트
+  else {
+    let blueLabels = Array.from(document.querySelectorAll("#blueTeam label"));
+    if (blueLabelIndex < blueLabels.length) {
+      blueLabels[blueLabelIndex].style.backgroundImage = `url(${lastSelectedImgSrc})`;
+      blueLabels[blueLabelIndex].style.backgroundSize = "cover";
+      console.log("Blue Team Label Updated: " + lastSelectedChampion);
+      blueLabelIndex++;
+    } else {
+      alert("모든 벤픽 슬롯과 라벨이 채워졌습니다.");
+    }
+  }
+  
+  // 턴 전환 등 추가 동작
+  switchTurn();
 });
+
+
 //* 레드팀 버튼 클릭 이벤트
 redBtn.addEventListener("click", () => {
   if (lastSelectedChampion && redImgIndex < 5) {
@@ -230,9 +250,10 @@ redBtn.addEventListener("click", () => {
     let redImg = redImgs[redImgIndex];
 
     // 벤 이미지 변경, 데이터 추가
-    redImg.src = lastSelectedImgSrc;
-    banPickData.red.ban.push(lastSelectedChampion);
-    redImgIndex++;
+    redImg.src = lastSelectedImgSrc; 
+    banPickData.red.ban.push(lastSelectedChampion); 
+    redImgIndex++; 
+  
 
     console.log("Red Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
