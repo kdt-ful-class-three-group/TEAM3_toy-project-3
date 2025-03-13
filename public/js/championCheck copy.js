@@ -43,7 +43,7 @@ clickLabel.forEach((element) => {
   });
 });
 
-//* 각 팀별 벤픽 함수 이 함수로 벤픽 로직 구현
+//* 각 팀별 벤픽 함수 ㅇ
 export function imgChange(color) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
   console.log(savedPicks);
