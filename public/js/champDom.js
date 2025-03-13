@@ -1,4 +1,4 @@
-// import banPickLogic from "./championCheck.js";
+import banPickLogic from "./banPickLogic.js";
 
 function championCreate(data) {
   let championList = document.getElementById("championList");
@@ -10,17 +10,20 @@ function championCreate(data) {
   // 챔피언 목록을 출력.
   function championBox(championArray) {
     championList.innerHTML = "";
-    championArray.forEach((element) => {
+    let index = "";
+    championArray.forEach((element, i) => {
       // console.log(element.image)
       // p태그 생성하여 챔피언 이름 작성. css도 수정완료 확인바라고 수정할 부분있으면 최현준에게 말해주세요 //
       championList.innerHTML += `
-        <div>
+        <div id="championList${i}">
           <img src="./public/img/champion/${element.image.full}" alt="${element.name}" data-name="${element.name}">
           <p>${element.name}</p>
         </div>
       `;
+
     });
     const createdElements = championList.querySelectorAll("div");
+
     banPickLogic(createdElements);
   }
 
