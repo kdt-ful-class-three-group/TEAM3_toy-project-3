@@ -203,37 +203,54 @@ function switchTurn() {
   lastSelectedChampion = null;
   startTimer(); // 턴이 바뀌면 타이머 다시 시작
 }
+
+let blueBanIndex = 0;
+let blueLabelIndex = 0;
+
+// blueBtn.addEventListener("click", () => {
+
+//   if (blueBanIndex < 5) {
+//     let blueImgs = championblue.querySelectorAll("img");
+//     let blueImg = blueImgs[blueBanIndex];
+
+//     blueImg.src = lastSelectedImgSrc;
+//     banPickData.blue.ban.push(lastSelectedChampion);
+//     console.log("Blue Team Banned: " + lastSelectedChampion);
+//     blueBanIndex++;
+//   }
+
+//   else {
+//     let blueLabels = Array.from(document.querySelectorAll("#blueTeam label"));
+//     if (blueLabelIndex < blueLabels.length) {
+//       blueLabels[blueLabelIndex].style.backgroundImage = `url(${lastSelectedImgSrc})`;
+//       blueLabels[blueLabelIndex].style.backgroundSize = "cover";
+//       console.log("Blue Team Label Updated (index " + blueLabelIndex + "): " + lastSelectedChampion);
+//       blueLabelIndex++;
+//     }
+//   }
+
+//   // 턴 전환 등 추가 동작
+//   switchTurn();
+// });
 // 블루 챔피언 선택
-let blueBanIndex = 0;   
-let blueLabelIndex = 0; 
-
 blueBtn.addEventListener("click", () => {
-
-  if (blueBanIndex < 5) {
+  if (lastSelectedChampion && blueImgIndex < 5) {
     let blueImgs = championblue.querySelectorAll("img");
-    let blueImg = blueImgs[blueBanIndex];
-    
+    let blueImg = blueImgs[blueImgIndex];
 
-    blueImg.src = lastSelectedImgSrc; 
+    // 벤 이미지 변경, 데이터추가
+    blueImg.src = lastSelectedImgSrc;
     banPickData.blue.ban.push(lastSelectedChampion);
+    blueImgIndex++;
+
     console.log("Blue Team Banned: " + lastSelectedChampion);
-    blueBanIndex++;
-  }
+    if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
+      sendBanPickData(banPickData);
+    }
 
-  else {
-    let blueLabels = Array.from(document.querySelectorAll("#blueTeam label"));
-    if (blueLabelIndex < blueLabels.length) {
-      blueLabels[blueLabelIndex].style.backgroundImage = `url(${lastSelectedImgSrc})`;
-      blueLabels[blueLabelIndex].style.backgroundSize = "cover";
-      console.log("Blue Team Label Updated (index " + blueLabelIndex + "): " + lastSelectedChampion);
-      blueLabelIndex++;
-    }  
+    switchTurn();
   }
-  
-  // 턴 전환 등 추가 동작
-  switchTurn();
 });
-
 
 //* 레드팀 버튼 클릭 이벤트
 redBtn.addEventListener("click", () => {
@@ -242,10 +259,9 @@ redBtn.addEventListener("click", () => {
     let redImg = redImgs[redImgIndex];
 
     // 벤 이미지 변경, 데이터 추가
-    redImg.src = lastSelectedImgSrc; 
-    banPickData.red.ban.push(lastSelectedChampion); 
-    redImgIndex++; 
-  
+    redImg.src = lastSelectedImgSrc;
+    banPickData.red.ban.push(lastSelectedChampion);
+    redImgIndex++;
 
     console.log("Red Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
