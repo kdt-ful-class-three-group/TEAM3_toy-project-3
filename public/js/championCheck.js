@@ -43,7 +43,7 @@ clickLabel.forEach((element) => {
   });
 });
 
-//* 각 팀별 벤픽 함수
+//* 각 팀별 벤픽 함수 이 함수로 벤픽 로직 구현
 export function imgChange(color) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
   console.log(savedPicks);
@@ -143,7 +143,7 @@ function startTimer() {
   clearInterval(timer);
   seconds = 5;
   txt.textContent = seconds + "초";
-  
+
   timer = setInterval(() => {
     seconds--;
     txt.textContent = seconds + "초";
@@ -158,7 +158,7 @@ function startTimer() {
     }
   }, 1000);
 }
-
+//* 250313 턴만 넘기는 함수
 function switchTurn() {
   clickCount++; // ✅ 턴이 변경될 때도 clickCount 증가
   console.log("현재 클릭 횟수:", clickCount);
@@ -172,22 +172,21 @@ function switchTurn() {
   }
 
   if (currentTeam === "blue") {
-    currentTeam = "red";
-    blueBtn.style.display = "none";
-    redBtn.style.display = "block";
-    blueTeam.style.backgroundColor = "";
-    redTeam.style.backgroundColor = "#ff000082";
+    // currentTeam = "red";
+    // blueBtn.style.display = "none";
+    // redBtn.style.display = "block";
+    // blueTeam.style.backgroundColor = "";
+    // redTeam.style.backgroundColor = "#ff000082";
   } else if (currentTeam === "red") {
-    currentTeam = "blue";
-    blueBtn.style.display = "block";
-    redBtn.style.display = "none";
-    redTeam.style.backgroundColor = "";
-    blueTeam.style.backgroundColor = "#0080ff82";
+    // currentTeam = "blue";
+    // blueBtn.style.display = "block";
+    // redBtn.style.display = "none";
+    // redTeam.style.backgroundColor = "";
+    // blueTeam.style.backgroundColor = "#0080ff82";
   }
 
   startTimer(); // ⬅️ 턴이 바뀌면 타이머 다시 시작
 }
-
 
 blueBtn.addEventListener("click", () => {
   if (lastSelectedChampion && blueImgIndex < 5) {
@@ -195,15 +194,15 @@ blueBtn.addEventListener("click", () => {
     let blueImg = blueImgs[blueImgIndex];
 
     // 벤 이미지 변경, 데이터추가
-    blueImg.src = lastSelectedImgSrc; 
-    banPickData.blue.ban.push(lastSelectedChampion); 
-    blueImgIndex++; 
+    blueImg.src = lastSelectedImgSrc;
+    banPickData.blue.ban.push(lastSelectedChampion);
+    blueImgIndex++;
 
     console.log("Blue Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
       sendBanPickData(banPickData);
     }
-   
+
     switchTurn();
   }
 });
@@ -215,10 +214,9 @@ redBtn.addEventListener("click", () => {
     let redImg = redImgs[redImgIndex];
 
     // 벤 이미지 변경, 데이터 추가
-    redImg.src = lastSelectedImgSrc; 
-    banPickData.red.ban.push(lastSelectedChampion); 
-    redImgIndex++; 
-  
+    redImg.src = lastSelectedImgSrc;
+    banPickData.red.ban.push(lastSelectedChampion);
+    redImgIndex++;
 
     console.log("Red Team Banned: " + lastSelectedChampion);
     if (banPickData.blue.ban.length === 5 && banPickData.red.ban.length === 5) {
