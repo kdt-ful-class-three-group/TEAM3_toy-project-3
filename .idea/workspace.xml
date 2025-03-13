@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bf85739-fc3c-4a5f-bf7f-663b7c6af0e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/js/banPickLogic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/chamPick_object.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/chamPick.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chamPick.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/champDom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/champDom.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +52,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Node.js.chamPick_jm.js.executor": "Run",
+    "Node.js.chamPick_object.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "copy",
     "last_opened_file_path": "/Users/jaden/WebstormProjects/TEAM3_toy-project-3/public/js",
@@ -88,6 +88,7 @@
       <updated>1741837214780</updated>
       <workItem from="1741837216161" duration="1951000" />
       <workItem from="1741839182910" duration="3831000" />
+      <workItem from="1741847386717" duration="440000" />
     </task>
     <servers />
   </component>
