@@ -1,6 +1,7 @@
 // import {arr} from './chamPick.js'
 
 
+import {champstate} from "./champstate.js";
 
 let arr = {
 
@@ -23,7 +24,7 @@ function banPickLogic(elements ) {
 
             if (allChecked) {
                 let mainImg = elementdata.querySelector("img");
-                // lastSelectedChampion = mainImg.getAttribute("data-name");
+                champstate()                // lastSelectedChampion = mainImg.getAttribute("data-name");
                 // lastSelectedImgSrc = mainImg.src;
 
                 // if (blueBtn.style.display === "block" && blueImgIndex < 5) {

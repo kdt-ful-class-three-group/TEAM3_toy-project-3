@@ -10,5 +10,5 @@ let redImgIndex = 0; // 레드팀 벤픽 카운트
 let article = document.querySelectorAll("article label"); // 모든 label 요소 선택
 
 
-let champPickObj = { championblue, championred, blueTeam, redTeam, blueBtn, redBtn, clickLabel, blueImgIndex, redImgIndex, article };
+export const champPickObj = { championblue, championred, blueTeam, redTeam, blueBtn, redBtn, clickLabel, blueImgIndex, redImgIndex, article };
 console.log(champPickObj);

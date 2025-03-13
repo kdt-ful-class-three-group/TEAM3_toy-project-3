@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bf85739-fc3c-4a5f-bf7f-663b7c6af0e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/js/chamPick_object.js" afterDir="false" />
+    <list default="true" id="2bf85739-fc3c-4a5f-bf7f-663b7c6af0e5" name="Changes" comment="그릇 만듬">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/banPickLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/banPickLogic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/chamPick_object.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chamPick_object.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/champstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/champstate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +29,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -49,23 +51,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.chamPick_jm.js.executor": "Run",
-    "Node.js.chamPick_object.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "copy",
-    "last_opened_file_path": "/Users/jaden/WebstormProjects/TEAM3_toy-project-3/public/js",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.chamPick_jm.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.chamPick_object.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;copy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jaden/WebstormProjects/TEAM3_toy-project-3/public/js&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/js" />
@@ -88,11 +90,24 @@
       <updated>1741837214780</updated>
       <workItem from="1741837216161" duration="1951000" />
       <workItem from="1741839182910" duration="3831000" />
-      <workItem from="1741847386717" duration="440000" />
+      <workItem from="1741847386717" duration="1046000" />
     </task>
+    <task id="LOCAL-00001" summary="그릇 만듬">
+      <option name="closed" value="true" />
+      <created>1741847951445</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741847951445</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="그릇 만듬" />
+    <option name="LAST_COMMIT_MESSAGE" value="그릇 만듬" />
   </component>
 </project>
