@@ -1,4 +1,4 @@
-import banPickLogic from "./championCheck.js";
+// import banPickLogic from "./championCheck.js";
 
 function championCreate(data) {
   let championList = document.getElementById("championList");
