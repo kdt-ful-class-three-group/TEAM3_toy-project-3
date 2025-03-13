@@ -47,15 +47,14 @@ clickLabel.forEach((element) => {
 export function imgChange(color) {
   let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
   console.log(savedPicks);
-  //* 블루팀 벤픽 로직
   if (allChecked) {
+    //* 블루팀 벤픽 로직
     if (blueImgIndex < 5 && color === "blue") {
       // blueImgIndex++;
       blueBtn.style.display = "none";
       redBtn.style.display = "block";
       blueTeam.style.backgroundColor = "";
       redTeam.style.backgroundColor = "#ff000082";
-
       startTimer();
     }
     //* 레드팀 벤픽 로직
