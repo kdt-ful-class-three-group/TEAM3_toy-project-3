@@ -2,6 +2,7 @@
 
 
 import {champstate} from "./champstate.js";
+import {champPickObj} from "./chamPick_object.js";
 
 let arr = {
 
@@ -17,10 +18,12 @@ let clickLabel = Array.from(document.querySelectorAll(".champion-check input"));
 function banPickLogic(elements ) {
     // elements 모든 챔피언 리스트 div
     elements.forEach((elementdata) => {
+        console.log(elementdata)
         elementdata.addEventListener("click", () => {
             console.log(arr.blueArr)
+
             arr.blueArr.push(elementdata)
-            let allChecked = clickLabel.every((input) => input.checked);
+            let allChecked = champPickObj.clickLabel.every((input) => input.checked);
 
             if (allChecked) {
                 let mainImg = elementdata.querySelector("img");

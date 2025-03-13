@@ -1,4 +1,6 @@
 import banPickLogic from "./banPickLogic.js";
+import {champstate} from "./champstate.js";
+import {champPickObj} from "./chamPick_object.js";
 // *  각 버튼 클릭 시 해당 팀의 벤픽 카운트 증가
 let blueImgIndex = 0; // 블루팀 벤픽 카운트
 let redImgIndex = 0; // 레드팀 벤픽 카운트
@@ -16,10 +18,11 @@ let arr = {
 //* 블루팀 벤픽 로직
 
 function imgChange(color) {
-  let allChecked = clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
+  let allChecked = champPickObj.clickLabel.every((input) => input.checked); //* 모든 input이 checked인지 확인 (전역변수로 두면 체크된지 안된지 확인이 안됨)
   if (allChecked) {
     banPickLogic(color);
+    champstate(color)
   }
 }
-
+window.imgChange = imgChange;
 export default { arr };

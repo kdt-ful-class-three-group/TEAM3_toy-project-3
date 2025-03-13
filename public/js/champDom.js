@@ -7,6 +7,8 @@ function championCreate(data) {
   // sort메서드로 정렬해봄.
   champions.sort((a, b) => a.name.localeCompare(b.name, "ko-KR"));
 
+
+
   // 챔피언 목록을 출력.
   function championBox(championArray) {
     championList.innerHTML = "";
